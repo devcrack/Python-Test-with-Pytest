@@ -34,8 +34,20 @@ def test_dont_care_if_fails() -> None:
 
 @pytest.mark.slow
 def test_with_custom_mark1() -> None:
-    passX
+    pass
 
 @pytest.mark.slow
 def test_with_custom_mark2() -> None:
     pass
+
+
+class Company:
+    """
+    Just defining a test class
+    """
+    def __int__(self, name: str, stock_symbol: str):
+        self.name = name
+        self.stock_symbol = stock_symbol
+
+        def __str__(self):
+            return f"{self.name}: {self.stock_symbol}"
