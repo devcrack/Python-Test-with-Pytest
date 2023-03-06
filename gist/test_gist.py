@@ -45,9 +45,75 @@ class Company:
     """
     Just defining a test class
     """
-    def __int__(self, name: str, stock_symbol: str):
+    def __init__(self, name: str, stock_symbol: str):
         self.name = name
         self.stock_symbol = stock_symbol
 
-        def __str__(self):
-            return f"{self.name}: {self.stock_symbol}"
+    def __str__(self):
+        return f"{self.name}: {self.stock_symbol}"
+
+# Fixtures
+"""
+What is a fixture, is a function and we can also call fixtures as a pytest mark. 
+A fixture is a function that is marked as a fixture. When we mark a function as a fixture we are 
+telling to Pytest that we might use this function before and/or after running the test functions. 
+
+"""
+@pytest.fixture
+def company() -> Company:
+    """Function that is marked as a fixture and that is just creating a company object """
+    return Company(name="Fiver", stock_symbol="FVRR")
+
+def test_with_fixture(company:Company) -> None:
+    """
+    Just simple test that is using the company fixture.
+    In this case  Pytest is going to look for a fixture function with the same name of the argument of
+    the argument in the test function, so this function is using the fixture function company()
+    :param company:
+    :return: None
+    """
+    print(f"Printing {company} from fixture")
+
+    # Pytest Parametrized
+    """
+    Pytest parametrized is a simply pytest very elegant way of running the same test over and over again 
+    with different inputs.
+    
+    For make use of parametrized test we have to decorate the funcion with the mark parametrize.
+    
+    The fist argument of the decorator is the name of the variable we want to override, The second argument is a 
+    list with the values that we want to override, with the varible of the first argument.
+    We can also add labels to the tests with the different used values in each running of the test. 
+    This can be e2asil y achieved with the IDS argument.    
+    """
+
+# Example
+@pytest.mark.parametrize(
+    "company_name",
+    ["Tiktok", "Instagram", "Twitch"],
+    ids=["TIKTOK TEST", "INSTAGRAM TEST", "TWITCH TEST"]
+)
+def test_parametrized(company_name: str) -> None:
+    """
+
+    :param company_name:
+    :return:
+    """
+    print(f"\nTest with{company_name}")
+
+# PYTEST RAISES
+"""
+This is a context manager used for create test that is supposed to assert that we are raising some sort of 
+exception. For this purpose we use pytest.raises context manager
+"""
+
+
+def raise_covid19_exception() -> None:
+    raise ValueError("CoronaVirus Exception")
+
+
+def test_raise_covid19_exception_should_pass() -> None:
+    with pytest.raises(ValueError) as e:
+        raise_covid19_exception()
+    assert "CoronaVirus Exception" == str(e.value)
+
