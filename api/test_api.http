@@ -1,3 +1,23 @@
 ### Getting all companies
 GET http://127.0.0.1:8000/companies/
 Accept: application/json
+
+### Getting an specific Company by ID
+GET http://127.0.0.1:8000/companies/1/
+Accept: application/json
+
+### Creating a new Company
+POST http://127.0.0.1:8000/companies/
+Content-Type: application/json
+
+{
+  "name":"Microsoft"
+}
+### Updating an item
+PUT http://127.0.0.1:8000/companies/1/
+Content-Type: application/json
+
+{
+  "name": "Google",
+  "status": "Layoffs"
+}
