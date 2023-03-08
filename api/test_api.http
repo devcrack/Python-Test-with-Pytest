@@ -1,0 +1,3 @@
+### Getting all companies
+GET http://127.0.0.1:8000/companies/
+Accept: application/json
