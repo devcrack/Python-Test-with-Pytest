@@ -12,3 +12,15 @@ with the flag v we ensure that the output of test will be more explicative and i
   If we run a test with the prefix **not** in the name of custom mark our test with the custom mark will be ignored and the others test without this mark
   will be ignored. Example: ```pytest . -v -m "not my_custom_mark_name"```
 - ```-s```: If we run the test with this flag, the flag ```-s``` we can see the prints in the tests
+
+
+# About Unit testing and Integration Testing
+
+
+Unit test is about to validate that the businesss logic of a unit of code is doing what it's supposed to.
+So in that sense we are only interested in that isolate code. So we isolate this unit from other component
+and then we verify that this unit is doing what it's supposed to do for a fix input.
+
+Integration test is simply a test that is testing multiple units.
+
+ 
